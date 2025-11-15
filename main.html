@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahaan Khan | AI/ML Software Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --secondary: #60a5fa;
+            --accent: #3b82f6;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle background pattern */
+        .code-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            border-color: var(--text-muted);
+            color: var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Section styling */
+        section {
+            padding: 6rem 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about-content {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .experience-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .company {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-card .date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-card ul {
+            margin-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .experience-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card.featured {
+            border: 2px solid var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .project-card.featured::before {
+            content: "🏆 1st Place Winner";
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .education-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .date {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .contact-link:hover {
+            transform: scale(1.1);
+            color: var(--primary);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated coding background -->
+    <div class="code-bg" id="codeBg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Shahaan Khan</h1>
+            <p class="tagline">Aspiring AI/ML Software Engineer | LLM & AI Infrastructure Enthusiast</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn">Get In Touch</a>
+                <a href="Shahaan_Khan_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>Hi, I am Shahaan! I'm pursuing a Master's degree in Applied Human Centered AI at Syracuse University. This graduate program is deepening my expertise in AI algorithms, data analysis, and cutting-edge technologies. My goal is to transition into a full-time software engineering career focused on AI-driven projects.</p>
+                <br>
+                <p>I'm passionate about leveraging my software development experience and AI knowledge to build intelligent applications that solve real-world problems. I'm excited to contribute to innovative projects where I can merge advanced software engineering practices with AI to drive impactful solutions.</p>
+                <br>
+                <p>I've designed and built software solutions using languages such as Java, Python, and SQL, applying solid Object-Oriented Programming (OOP) principles. My background includes collaborating in cross-functional teams and technical writing, which have honed my problem-solving and communication skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h3>Project Manager</h3>
+                    <div class="company">Stalwart Development Group</div>
+                    <div class="date">April 2024 – August 2025 | Syracuse, New York</div>
+                    <ul>
+                        <li>Spearheaded a $7 million+ portfolio comprising diverse initiatives</li>
+                        <li>Lead the first general contractor project for the company valued at $3.25 million, delivering 70% profitability</li>
+                        <li>Developed comprehensive project documentation to ensure transparency and cross-team collaboration</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Computer Systems Analyst</h3>
+                    <div class="company">Stalwart Development Group</div>
+                    <div class="date">November 2023 – April 2024 | Syracuse, New York</div>
+                    <ul>
+                        <li>Designed and implemented enhanced cybersecurity protocols and procedures on-premise with Fortinet</li>
+                        <li>Developed and deployed efficient onboarding and offboarding systems to manage personnel transitions</li>
+                        <li>Built an internal python application to automate and streamline workflows, improving deliverability by 35%</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Programming Instructor</h3>
+                    <div class="company">Real Programming 4 Kids</div>
+                    <div class="date">November 2021 – April 2024 | Toronto, Ontario, Canada</div>
+                    <ul>
+                        <li>Delivered instruction in object-oriented programming (OOP) principles to students and classroom groups</li>
+                        <li>Taught Java and Python fundamentals, advanced constructs, and project-based applications to 100+ students</li>
+                        <li>Led development of custom game implementations with event-driven programming and collision detection</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card">
+                    <h3>Technical Analyst</h3>
+                    <div class="company">Deloitte – Gi3: Global Investment and Innovation Incentive</div>
+                    <div class="date">January 2022 – August 2022 | Toronto, Ontario, Canada</div>
+                    <ul>
+                        <li>Collaborated with clients to build technical reports to demonstrate technological developments for SR&ED claims for banking and payments, 5G and IoT, telecommunication, artificial intelligence, and machine learning</li>
+                        <li>Supported Fortune 100 companies in the TMT sector in procuring government incentives for their SR&ED activities, strategic initiatives, and technical projects</li>
+                        <li>Mentored and trained new interns, fostering technical growth while maintaining client deliverables</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Technical Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card featured">
+                    <h3>Clear Path – AI-Powered Mobile Health Platform</h3>
+                    <p>Led a 3-member agile team through ideation to prototype delivery in 24 hours. Developed a cross-platform mobile application in React Native and TypeScript to enable field data capture and streamline ophthalmology screening workflows in rural Kenya.</p>
+                    <p><strong>Tech Stack:</strong> React Native, TypeScript, Supabase, PostgreSQL, Expo Go</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Demo</a>
+                        <a href="https://github.com/ShahaanK" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>2D Game Development in Java - Asteroids Clone</h3>
+                    <p>Implemented a real-time 2D game system in Java using JFrame for rendering and event handling. Designed and applied matrix-based collision detection algorithms and object transformation logic.</p>
+                    <p><strong>Tech Stack:</strong> Java, JFrame, Matrix Transformations</p>
+                    <div class="project-links">
+                        <a href="https://github.com/ShahaanK" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>E-Commerce Interface & Database Design</h3>
+                    <p>Developed a responsive e-commerce interface in Figma. Implemented a MySQL database with normalization (up to 3NF), indexing, and query optimization to ensure scalability.</p>
+                    <p><strong>Tech Stack:</strong> Figma, MySQL, REST APIs</p>
+                    <div class="project-links">
+                        <a href="https://github.com/ShahaanK" class="project-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming & Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>AI/ML Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">Recommender Systems</span>
+                        <span class="skill-tag">Personalization Engines</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Infrastructure & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Supabase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>Syracuse University</h3>
+                    <div class="degree">Master of Science in Applied Human Centered AI</div>
+                    <div class="date">January 2027 | Syracuse, New York, United States</div>
+                    <p><strong>Coursework:</strong> Natural Language Processing, Dynamics of Human AI Interaction, Introduction to Data Science, Building Human Centered AI Applications, Deep Learning in Practice, Responsible AI, Text Mining, Applied Machine Learning</p>
+                </div>
+
+                <div class="education-card">
+                    <h3>York University</h3>
+                    <div class="degree">Bachelor of Science in Computer Science – Honours</div>
+                    <div class="date">October 2023 | Toronto, Ontario, Canada</div>
+                    <p><strong>Coursework:</strong> Fundamentals of Artificial Intelligence, Advanced Object-Oriented Programming, Data Mining, Software Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>I'm always open to discussing new opportunities, collaborations, or just chatting about AI and technology!</p>
+                <div class="contact-links">
+                    <a href="mailto:shahaank.us@gmail.com" class="contact-link">
+                        <div class="contact-icon">📧</div>
+                        <div>Email</div>
+                    </a>
+                    <a href="tel:+13152783717" class="contact-link">
+                        <div class="contact-icon">📱</div>
+                        <div>Phone</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/shahaan-k" target="_blank" class="contact-link">
+                        <div class="contact-icon">💼</div>
+                        <div>LinkedIn</div>
+                    </a>
+                    <a href="https://github.com/ShahaanK" target="_blank" class="contact-link">
+                        <div class="contact-icon">💻</div>
+                        <div>GitHub</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.experience-card, .project-card, .skill-category, .education-card').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
